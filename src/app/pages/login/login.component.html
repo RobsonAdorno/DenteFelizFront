@@ -37,7 +37,7 @@
           <div class="text-center text-muted mb-4">
             <small>Ou entre com suas credenciais</small>
           </div>
-          <form role="form">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <div class="form-group mb-3">
               <div class="input-group input-group-alternative">
                 <div class="input-group-prepend">
