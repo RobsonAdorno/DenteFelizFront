@@ -1,0 +1,35 @@
+<div class="login-container">
+  <mat-card>
+
+    <mat-card-title color="primary">
+      <mat-toolbar color="primary">Toolbar</mat-toolbar>
+    </mat-card-title>
+
+    <mat-card-content>
+      <form (submit)="onSubmit()" [formGroup]="loginForm" >
+        <mat-form-field>
+          <input matInput type="text" placeholder="Usuário" formControlName="login">
+          <mat-error>
+            Campo usuário é obrigatório
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="password" placeholder="Senha" formControlName="password">
+          <mat-error *ngIf="password.hasError('required')">
+            Campo senha é obrigatório
+          </mat-error>
+
+          <mat-error *ngIf="password.hasError('minlength')">
+            Validação mínima de 8 caracteres
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-button type="submit" color="primary" [disabled]="loginForm.invalid">Entrar</button>
+
+      </form>
+    </mat-card-content>
+
+  </mat-card>
+
+</div>
