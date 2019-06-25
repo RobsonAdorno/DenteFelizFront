@@ -3,11 +3,11 @@
   <span fxFlex></span>
 
   <ng-container *ngIf="!(authenticated$ | async) ">
-    <button mat-button routerLink="/auth/login">
+    <button mat-button routerLink="auth/components/login">
       <mat-icon>input</mat-icon>
       &nbsp;Sign in
     </button>
-    <button mat-button routerLink="/auth/register">
+    <button mat-button routerLink="auth/components/register">
       <mat-icon>person_add</mat-icon>
       &nbsp;Sign Up
     </button>

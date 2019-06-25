@@ -23,12 +23,12 @@ import {DashboardComponent} from "../dashboard/dashboard.component";
 })
 export class AuthModule {
 
-  // static forRoot(): ModuleWithProviders {
-  //   return {
-  //     ngModule: AuthModule,
-  //     providers: [
-  //       AuthInterceptor
-  //     ]
-  //   }
-  // }
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: AuthModule,
+      providers: [
+        AuthInterceptor
+      ]
+    }
+  }
 }

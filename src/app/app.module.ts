@@ -1,15 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {AppComponent} from './app.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from "../material-module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {DashboardComponent} from './dashboard/dashboard.component';
-import {HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthModule} from "./auth/auth.module";
 import {AuthInterceptor} from "./auth/auth.interceptor";
 import {AuthRoutingModule} from "./auth/auth.routing.module";
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -24,11 +24,12 @@ import {AuthRoutingModule} from "./auth/auth.routing.module";
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    // AuthModule.forRoot()
+    RouterModule.forRoot([]),
+    AuthModule.forRoot()
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
-  bootstrap: [AppComponent, DashboardComponent],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
