@@ -9,22 +9,22 @@ import {MatSnackBar} from "@angular/material";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm:FormGroup;
+  loginForm: FormGroup;
 
-  constructor(private fb:FormBuilder, private authService: AuthService, private snackBar: MatSnackBar){}
+  constructor(private fb: FormBuilder, private authService: AuthService, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.createForm();
   }
 
-  createForm(){
+  createForm() {
     this.loginForm = this.fb.group({
       login: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(8)]]
-    })
+    });
   }
 
-  onSubmit(){
+  onSubmit() {
     const crendentials = this.loginForm.value;
 
     this.authService.login(crendentials)
