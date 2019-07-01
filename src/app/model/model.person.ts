@@ -5,5 +5,5 @@ export interface Person {
   cro?: any;
   login: string;
   password: string;
-  token?: string;
+  Authorization?: string;
 }

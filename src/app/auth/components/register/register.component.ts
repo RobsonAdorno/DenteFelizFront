@@ -53,7 +53,7 @@ export class RegisterComponent implements OnInit {
 
         (sucess) => {
           this.snackBar.open(
-            'Successfuly registered. Use your credentials to sing in',
+            'Registro feito com sucesso!',
             'OK', {duration: 2000});
           this.router.navigateByUrl('auth/components/login');
         },

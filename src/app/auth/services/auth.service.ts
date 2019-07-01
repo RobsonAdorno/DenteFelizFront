@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable, of} from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Person} from "../../model/model.person";
 import {UtilsString} from "../../utils/utils.string";
 import {catchError, tap, map} from 'rxjs/operators';
@@ -19,25 +19,28 @@ export class AuthService {
     return this.http.post<Person>(`${UtilsString.baseUrlApi}/persons`, person);
   }
 
-  login(credencials: {login: string, password: string}): Observable<Person> {
-    return this.http
-      .post<Person>(`${UtilsString.baseUrlApi}/login`, credencials)
-      .pipe(
-        tap((person: Person) => {
-          localStorage.setItem('token', person.token);
-          this.subLoggedIn$.next(true);
-          this.subUser$.next(person);
-        }));
+  login(credencials: {login: string, password: string}): Observable<any> {
+    return this.http.post(`${UtilsString.baseUrlApi}/login`, credencials,
+      {
+        observe: 'response',
+        responseType: 'text'
+      });
+      // .pipe(
+      //   tap((person: Person) => {
+      //     localStorage.setItem('token ', person.Authorization);
+      //     this.subLoggedIn$.next(true);
+      //     this.subUser$.next(person);
+      //   }));
   }
 
   logout() {
-    localStorage.removeItem('token');
+    localStorage.removeItem('Authorization');
     this.subLoggedIn$.next(false);
     this.subUser$.next(null);
   }
 
   isAuthenticated(): Observable<boolean> {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('Authorization');
     if (token && !this.subLoggedIn$.value) {
       return this.checkTokenValidation();
     }
@@ -50,7 +53,7 @@ export class AuthService {
       .pipe(
         tap((person: Person) => {
           if (person) {
-            localStorage.setItem('token', person.token);
+            localStorage.setItem('Authorization', person.Authorization);
             this.subLoggedIn$.next(true);
             this.subUser$.next(person);
           }
