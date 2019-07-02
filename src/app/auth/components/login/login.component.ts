@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
       },
 
       (error) => {
+        console.log(error);
         this.snackBar.open(
           "Login ou senha inválido!"
         ), {duration:2000};
