@@ -12,7 +12,6 @@ import {DashboardComponent} from "../dashboard/dashboard.component";
   declarations: [
     LoginComponent,
     RegisterComponent,
-    DashboardComponent,
   ],
   imports: [
     CommonModule,

@@ -11,16 +11,22 @@ import {AuthInterceptor} from "./auth/auth.interceptor";
 import {AuthRoutingModule} from "./auth/auth.routing.module";
 import { RouterModule } from '@angular/router';
 import { StorageService } from './service/storage.service';
-
+import { LoginComponent } from './auth/components/login/login.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DashboardRoutingModule } from './dashboard/dashboard-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     AuthRoutingModule,
+    DashboardRoutingModule,
     BrowserAnimationsModule,
+    NgbModule,
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,

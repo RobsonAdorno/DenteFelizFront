@@ -8,11 +8,12 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 const routes: Routes = [
   { path: 'auth/components/login', component: LoginComponent},
   { path: 'auth/components/register', component: RegisterComponent},
-  { path: 'app/dashboard', component: DashboardComponent}
+  { path: 'dashboard/', component: DashboardComponent},
+  { path: '', component: LoginComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AuthRoutingModule { }
+export class AuthRoutingModule {}
