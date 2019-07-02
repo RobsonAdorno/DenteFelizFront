@@ -6,6 +6,7 @@ import {UtilsString} from "../../utils/utils.string";
 import {catchError, tap, map} from 'rxjs/operators';
 import { LocalUser } from 'src/app/model/local.user';
 import { StorageService } from 'src/app/service/storage.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class AuthService {
 
   private subLoggedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private subUser$: BehaviorSubject<Person> = new BehaviorSubject<Person>(null);
+  private jwtHelper = new JwtHelperService();
 
   constructor(private http: HttpClient, private storage: StorageService) { }
 
@@ -39,7 +41,8 @@ export class AuthService {
   sucessfulLogin(authorizationValue: string){
     let tok = authorizationValue.substring(7);
     let user: LocalUser = {
-      token: tok
+      token: tok,
+      login: this.jwtHelper.decodeToken(tok).sub
     }
     this.storage.setLocalUser(user);
   }
