@@ -10,6 +10,7 @@ import {AuthModule} from "./auth/auth.module";
 import {AuthInterceptor} from "./auth/auth.interceptor";
 import {AuthRoutingModule} from "./auth/auth.routing.module";
 import { RouterModule } from '@angular/router';
+import { StorageService } from './service/storage.service';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { RouterModule } from '@angular/router';
     AuthModule.forRoot()
   ],
   providers: [
+    StorageService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],

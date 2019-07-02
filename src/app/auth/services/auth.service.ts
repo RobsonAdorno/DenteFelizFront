@@ -4,6 +4,8 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Person} from "../../model/model.person";
 import {UtilsString} from "../../utils/utils.string";
 import {catchError, tap, map} from 'rxjs/operators';
+import { LocalUser } from 'src/app/model/local.user';
+import { StorageService } from 'src/app/service/storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,24 +15,33 @@ export class AuthService {
   private subLoggedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private subUser$: BehaviorSubject<Person> = new BehaviorSubject<Person>(null);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private storage: StorageService) { }
 
   register(person: Person): Observable<Person> {
     return this.http.post<Person>(`${UtilsString.baseUrlApi}/persons`, person);
   }
 
   login(credencials: {login: string, password: string}): Observable<any> {
-    return this.http.post(`${UtilsString.baseUrlApi}/login`, credencials,
-      {
-        observe: 'response',
-        responseType: 'text'
-      });
-      // .pipe(
-      //   tap((person: Person) => {
-      //     localStorage.setItem('token ', person.Authorization);
-      //     this.subLoggedIn$.next(true);
-      //     this.subUser$.next(person);
-      //   }));
+    return this.http.
+    post(`${UtilsString.baseUrlApi}/login`, credencials,
+    {
+      observe: 'response',
+      responseType: 'text'
+    })
+  }
+
+  //     tap((person: Person) => {
+  //       localStorage.setItem('token ', person.Authorization);
+  //       this.subLoggedIn$.next(true);
+  //       this.subUser$.next(person);
+  // }
+
+  sucessfulLogin(authorizationValue: string){
+    let tok = authorizationValue.substring(7);
+    let user: LocalUser = {
+      token: tok
+    }
+    this.storage.setLocalUser(user);
   }
 
   logout() {
@@ -40,7 +51,8 @@ export class AuthService {
   }
 
   isAuthenticated(): Observable<boolean> {
-    const token = localStorage.getItem('Authorization');
+    var token = localStorage.getItem('Authorization');
+
     if (token && !this.subLoggedIn$.value) {
       return this.checkTokenValidation();
     }

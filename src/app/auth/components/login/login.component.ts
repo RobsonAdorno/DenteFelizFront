@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import {MatSnackBar} from "@angular/material";
-import { CredentialDTO } from 'src/app/model/credential/credential.dto';
 import { Router } from '@angular/router';
 
 @Component({
@@ -31,10 +30,11 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(crendentials)
       .subscribe((sucess) => {
-        this.router.navigateByUrl('app/dashboard')
+        this.authService.sucessfulLogin(sucess.headers.get('Authorization'));
+        
         this.snackBar.open(
-          "Seja bem vindo!"
-        ),{duration:2000};
+          'Seja bem vindo',);
+          this.router.navigateByUrl('app/dashboard')
       },
 
       (error) => {
