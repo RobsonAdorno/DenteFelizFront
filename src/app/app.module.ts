@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MaterialModule} from "../material-module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthModule} from "./auth/auth.module";
@@ -27,7 +26,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     DashboardRoutingModule,
     BrowserAnimationsModule,
     NgbModule,
-    MaterialModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,

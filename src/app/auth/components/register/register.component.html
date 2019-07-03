@@ -1,4 +1,4 @@
-<div  fxLayout="row" fxLayoutAlign="space-around center" >
+<!-- <div  fxLayout="row" fxLayoutAlign="space-around center" >
   <div align="center" fxLayout="row" fxLayoutAlign="center center"  class="register-form">
 
     <form role="form" [formGroup]="formRegister" (ngSubmit)="onSubmit()">
@@ -33,7 +33,7 @@
             </mat-form-field>
           </div>
 
-<!--          <div fxLayout="row" fxLayoutAlign="space-between stretch">-->
+        <div fxLayout="row" fxLayoutAlign="space-between stretch">-->
 <!--            <mat-form-field fxFlex="75">-->
 <!--              <input matInput type="text" formControlName="city"-->
 <!--                     autocomplete="citt" placeholder="City"  >-->
@@ -60,7 +60,7 @@
 <!--            </mat-form-field>-->
 <!--          </div>-->
 
-          <div fxLayout="row" fxLayoutAlign="space-between stretch">
+          <!-- <div fxLayout="row" fxLayoutAlign="space-between stretch">
             <mat-form-field fxFlex="100">
               <input matInput type="email" formControlName="email"
                      class="form-control" value="" autocomplete="email" placeholder="E-mail" >
@@ -102,4 +102,131 @@
   </div>
 </div>
 
+ -->
+
+ <div class="page-header" filter-color="orange">
+  <div class="page-header-image" style="background-image:url(assets/img/login.jpg)"></div>
+  <div class="container">
+      <div class="col-md-4 content-center">
+          <div class="card card-login card-plain">
+            <form (submit)="onSubmit()" [formGroup]="formRegister">
+                  <div class="header header-primary text-center">
+                      <div class="logo-container">
+                          <img src="assets/img/now-logo.png" alt="">
+                      </div>
+                  </div>
+                  <div class="content">
+                    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
+                      </div>
+                      <input type="text" formControlName="name"
+                      autocomplete="name" placeholder="Nome" class="form-control">
+                    </div>
+
+                    <div class="content">
+                      <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
+                        </div>
+                        <input type="text" formControlName="cpf"
+                        autocomplete="cpf" placeholder="CPF" class="form-control">
+                      </div>
+
+                       <div class="content">
+                    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
+                      </div>
+                        <input type="text" class="form-control" placeholder="Usuário" 
+                        (focus)="focus=true" (blur)="focus=false" formControlName="login">
+                    </div>
+                  <div class="content">
+                    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
+                      </div>
+                        <input type="text" class="form-control" placeholder="Usuário" (focus)="focus=true" (blur)="focus=false" formControlName="login">
+                    </div>
+
+                    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus1===true}">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="now-ui-icons text_caps-small"></i></span>
+                      </div>
+                      <input matInput type="text" formControlName="cro"
+                      autocomplete="cro" placeholder="CRO" class="form-control">
+                    </div>
+
+                    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus1===true}">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="now-ui-icons text_caps-small"></i></span>
+                      </div>
+                      <input type="email" formControlName="email"
+                      class="form-control" value="" autocomplete="email" placeholder="E-mail" class="form-control">
+                    </div>
+
+                    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus1===true}">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="now-ui-icons text_caps-small"></i></span>
+                      </div>
+                      <input type="password" formControlName="password1"
+                      type="password" autocomplete="off" class="form-control">
+                    </div>
+
+                    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus1===true}">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="now-ui-icons text_caps-small"></i></span>
+                      </div>
+                      <input type="password" formControlName="password2"
+                      type="password" autocomplete="off" class="form-control">
+                    </div>
+
+                  </div>
+                  <div class="footer text-center">
+                      <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">Entrar</button>
+                  </div>
+                  <div class="pull-left">
+                      <h6>
+                          <a href="javascript:void(0)" class="link" 
+                          routerLinkActive="active" [routerLink]="['auth/components/register']">Não é cadastrado?</a>
+                      </h6>
+                  </div>
+              
+          </div>
+      </div>
+  </div>
+  <footer class="footer">
+      <div class="container">
+          <nav>
+              <ul>
+                  <li>
+                      <a href="https://www.creative-tim.com">
+                          Creative Tim
+                      </a>
+                  </li>
+                  <li>
+                      <a href="https://www.creative-tim.com/about-us">
+                          About Us
+                      </a>
+                  </li>
+                  <li>
+                      <a href="http://blog.creative-tim.com">
+                          Blog
+                      </a>
+                  </li>
+                  <li>
+                      <a href="https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.md">
+                          MIT License
+                      </a>
+                  </li>
+              </ul>
+          </nav>
+          <div class="copyright">
+              &copy;
+            <!-- {{data | date: 'yyyy'}}, Designed by -->
+              <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Redemolado por
+              <a href="https://www.creative-tim.com" target="_blank">Dente Feliz</a>.
+          </div>
+      </div>
+  </footer>
 

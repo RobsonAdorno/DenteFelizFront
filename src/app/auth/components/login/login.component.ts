@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
-import {MatSnackBar} from "@angular/material";
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder,private router:Router, private authService: AuthService, private snackBar: MatSnackBar) {}
+  constructor(private fb: FormBuilder,private router:Router, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.createForm();
@@ -31,17 +30,11 @@ export class LoginComponent implements OnInit {
     this.authService.login(crendentials)
       .subscribe((sucess) => {
         this.authService.sucessfulLogin(sucess.headers.get('Authorization'));
-        
-        this.snackBar.open(
-          'Seja bem vindo',);
           this.router.navigateByUrl('app/dashboard')
       },
 
       (error) => {
         console.log(error);
-        this.snackBar.open(
-          "Login ou senha inválido!"
-        ), {duration:2000};
     });
   }
 

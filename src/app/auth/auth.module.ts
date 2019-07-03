@@ -1,6 +1,5 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MaterialModule} from "../../material-module";
 import {ReactiveFormsModule} from "@angular/forms";
 import {AuthRoutingModule} from "./auth.routing.module";
 import {AuthInterceptor} from "./auth.interceptor";
@@ -16,7 +15,6 @@ import {DashboardComponent} from "../dashboard/dashboard.component";
   imports: [
     CommonModule,
     AuthRoutingModule,
-    MaterialModule,
     ReactiveFormsModule
   ]
 })

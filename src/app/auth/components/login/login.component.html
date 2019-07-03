@@ -34,84 +34,76 @@
 
 </div> -->
 
-<div class="header bg-gradient-danger py-7 py-lg-8">
+
+<div class="page-header" filter-color="orange">
+  <div class="page-header-image" style="background-image:url(assets/img/login.jpg)"></div>
   <div class="container">
-    <div class="header-body text-center mb-7">
-      <div class="row justify-content-center">
-        <div class="col-lg-5 col-md-6">
-          <h1 class="text-white">Seja bem vindo!</h1>
-          <p class="text-lead text-light">Aproveite e entre em nossa platarfoma para dentistas.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="separator separator-bottom separator-skew zindex-100">
-    <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-      <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
-    </svg>
-  </div>
-</div>
-<!-- Page content -->
-<div class="container mt--8 pb-5">
-  <div class="row justify-content-center">
-    <div class="col-lg-5 col-md-7">
-      <div class="card bg-secondary shadow border-0">
-        <div class="card-header bg-transparent pb-5">
-          <div class="text-muted text-center mt-2 mb-3"><small>Entre com</small></div>
-          <div class="btn-wrapper text-center">
-            <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
-              <span class="btn-inner--icon"><img src="../assets/img/icons/common/github.svg"></span>
-              <span class="btn-inner--text">Github</span>
-            </a>
-            <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
-              <span class="btn-inner--icon"><img src="../assets/img/icons/common/google.svg"></span>
-              <span class="btn-inner--text">Google</span>
-            </a>
+      <div class="col-md-4 content-center">
+          <div class="card card-login card-plain">
+            <form (submit)="onSubmit()" [formGroup]="loginForm" >
+                  <div class="header header-primary text-center">
+                      <div class="logo-container">
+                          <img src="assets/img/now-logo.png" alt="">
+                      </div>
+                  </div>
+                  <div class="content">
+                    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
+                      </div>
+                        <input type="text" class="form-control" placeholder="Usuário" (focus)="focus=true" (blur)="focus=false" formControlName="login">
+                    </div>
+                    <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus1===true}">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="now-ui-icons text_caps-small"></i></span>
+                      </div>
+                        <input type="password" placeholder="Senha" class="form-control" (focus)="focus1=true" (blur)="focus1=false" formControlName="password"/>
+                    </div>
+                  </div>
+                  <div class="footer text-center">
+                      <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">Entrar</button>
+                  </div>
+                  <div class="pull-left">
+                      <h6>
+                          <a href="javascript:void(0)" class="link" routerLinkActive="active" [routerLink]="['auth/components/register']">Não é cadastrado?</a>
+                      </h6>
+                  </div>
+              </form>
           </div>
-        </div>
-        <div class="card-body px-lg-5 py-lg-5">
-          <div class="text-center text-muted mb-4">
-            <small>Ou entre com suas credenciais</small>
-          </div>
-          <form (submit)="onSubmit()" [formGroup]="loginForm" >
-            <div class="form-group mb-3">
-              <div class="input-group input-group-alternative">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-                </div>
-                <input class="form-control" type="text" placeholder="Usuário" formControlName="login">
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="input-group input-group-alternative">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                </div>
-                <input class="form-control" placeholder="Senha" type="password" formControlName="password">
-              </div>
-            </div>
-            <div class="custom-control custom-control-alternative custom-checkbox">
-              <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
-              <label class="custom-control-label" for=" customCheckLogin">
-                <span class="text-muted">Lembrar senha</span>
-              </label>
-            </div>
-            <a class="nav-link nav-link-icon" routerLinkActive="active">
-              <div class="text-center">
-                <button type="submit" class="btn btn-primary my-4">Entrar</button>
-              </div>
-          </a>
-          </form>
-        </div>
       </div>
-      <div class="row mt-3">
-        <div class="col-6">
-          <a href="javascript:void(0)" class="text-light"><small>Esqueceu a senha?</small></a>
-        </div>
-        <div class="col-6 text-right" >
-          <a href="javascript:void(0)" class="text-light" routerLinkActive="active" [routerLink]="['auth/components/register']"><small>Criar uma nova conta</small></a>
-        </div>
-      </div>
-    </div>
   </div>
+  <footer class="footer">
+      <div class="container">
+          <nav>
+              <ul>
+                  <li>
+                      <a href="https://www.creative-tim.com">
+                          Creative Tim
+                      </a>
+                  </li>
+                  <li>
+                      <a href="https://www.creative-tim.com/about-us">
+                          About Us
+                      </a>
+                  </li>
+                  <li>
+                      <a href="http://blog.creative-tim.com">
+                          Blog
+                      </a>
+                  </li>
+                  <li>
+                      <a href="https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.md">
+                          MIT License
+                      </a>
+                  </li>
+              </ul>
+          </nav>
+          <div class="copyright">
+              &copy;
+            <!-- {{data | date: 'yyyy'}}, Designed by -->
+              <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Redemolado por
+              <a href="https://www.creative-tim.com" target="_blank">Dente Feliz</a>.
+          </div>
+      </div>
+  </footer>
 </div>
