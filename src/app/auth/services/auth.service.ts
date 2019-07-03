@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable, of} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Person} from "../../model/model.person";
 import {UtilsString} from "../../utils/utils.string";
 import {catchError, tap, map} from 'rxjs/operators';
 import { LocalUser } from 'src/app/model/local.user';
