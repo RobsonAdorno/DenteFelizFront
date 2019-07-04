@@ -1,41 +1,42 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
-import {AuthModule} from "./auth/auth.module";
-import {AuthInterceptor} from "./auth/auth.interceptor";
-import {AuthRoutingModule} from "./auth/auth.routing.module";
-import { RouterModule } from '@angular/router';
-import { StorageService } from './service/storage.service';
-import { LoginComponent } from './auth/components/login/login.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { DashboardRoutingModule } from './dashboard/dashboard-routing.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { routing } from './app.routing';
+import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
+import { MarcarConsultaComponent } from './marcar-consulta/marcar-consulta.component';
+import { LoginComponent } from './login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { StorageService } from 'src/service/storage.service';
+import { ConsultaService } from 'src/service/consulta.service';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    HeaderComponent,
+    FooterComponent,
+    LoginComponent,
+    CadastroUsuarioComponent,
+    MarcarConsultaComponent,
   ],
   imports: [
     BrowserModule,
-    AuthRoutingModule,
-    DashboardRoutingModule,
-    BrowserAnimationsModule,
-    NgbModule,
-    ReactiveFormsModule,
     FormsModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot([]),
-    AuthModule.forRoot()
+    routing
   ],
   providers: [
     StorageService,
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    ConsultaService
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

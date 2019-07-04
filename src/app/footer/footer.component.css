@@ -1,0 +1,10 @@
+#sticky-footer {
+    flex-shrink: none;
+}
+.py-4 {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+  }

@@ -24,13 +24,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
-              "src/assets/sass/now-ui-kit.scss",
-              "src/assets/css/demo.css"
+              "src/styles.css"
             ],
-            "scripts": [
-              "node_modules/rellax/rellax.min.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -88,13 +84,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
-              "src/assets/sass/now-ui-kit.scss",
-              "src/assets/css/demo.css"
+              "src/styles.css"
             ],
-            "scripts": [
-              "node_modules/rellax/rellax.min.js"
-            ]
+            "scripts": []
           }
         },
         "lint": {
@@ -123,12 +115,6 @@
           }
         }
       }
-    }
-  },
-  "defaultProject": "DenteFeliz",
-  "schematics": {
-    "@schematics/angular:component": {
-      "styleext": "scss"
-    }
-  }
+    }},
+  "defaultProject": "DenteFeliz"
 }

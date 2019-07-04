@@ -1,0 +1,33 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="wrapper fadeInDown zero-raduis">
+  	  <div id="formContent">
+  	    <!-- Tabs Titles -->
+
+  	    <!-- Icon -->
+  	    <div class="fadeIn first">
+  	      <!-- <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" /> -->
+  	      <h2 class="my-5">Dente Feliz</h2>
+  	    </div>
+
+  	    <!-- Login Form -->
+  	    <form (submit)="onSubmit()" [formGroup]="loginForm">
+            <input type="text" class="form-control" 
+			placeholder="Usuário" (focus)="focus=true" (blur)="focus=false" formControlName="login">
+			<!-- <p *ngIf="loginForm.controls.login && loginForm.controls.login.errors" margin-left>Valor inválido</p> -->
+
+             <input type="password" class="form-control"
+            placeholder="Senha" (focus)="focus=true" (blur)="focus=false" formControlName="password">
+
+            <!-- <input type="submit" class="fadeIn fourth zero-raduis" value="login"> -->
+            <div class="footer text-center">
+                <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">Entrar</button>
+            </div>
+  	    </form>
+  	    
+
+  	  </div>
+  </div>

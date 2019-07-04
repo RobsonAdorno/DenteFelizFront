@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable, of} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {UtilsString} from "../../utils/utils.string";
 import {catchError, tap, map} from 'rxjs/operators';
-import { LocalUser } from 'src/app/model/local.user';
-import { StorageService } from 'src/app/service/storage.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Person } from 'src/model/model.person';
+import { UtilsString } from 'src/utils/utils.string';
+import { LocalUser } from 'src/model/local.user';
+import { StorageService } from 'src/service/storage.service';
 
 @Injectable({
   providedIn: 'root'
