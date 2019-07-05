@@ -1,7 +1,7 @@
-<p>Seja bem vindo(a) {{ login }}</p>
-<table id="example" class="table table-striped table-bordered" style="width:100%">
-        <thead>
-            <tr>
+<!-- <p>Seja bem vindo(a) {{ login }}</p>
+ <table id="example" class="table table-striped table-bordered" style="width:100%">
+        <thead> -->
+            <!-- <tr>
                 <th>Dentista</th>
                 <th>CRO</th>
                 <th>Data</th>
@@ -13,7 +13,7 @@
         <tr *ngIf="isAppointmentNull">
                 <td colspan="4">Consultas não disponível</td>
                 <button (click)="save()">Marcar Consulta</button>
-        </tr> 
+        </tr>  
         
         <tbody>
         <tr *ngFor="let apt of appointment">  
@@ -23,27 +23,77 @@
                 <td>12/05/19</td>
                 <td>08:00</td>
                 <td><button>CLAR</button></td>
-        </tr>
-        </tbody>
-    </table>
+        </tr> -->
 
-    <!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-              
-                  <!-- Modal content-->
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      <h4 class="modal-title">Modal Header</h4>
-                    </div>
-                    <div class="modal-body">
-                      <p>Some text in the modal.</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                  </div>
-              
+       
+        <mat-card fxFlex>
+            <mat-card-title>
+              Consultas
+            </mat-card-title>
+          
+            <mat-card-content>
+              <form [formGroup]="appointmentForm" (ngSubmit)="save()" 
+                  fxLayout="column" fxLayoutAlign="space-between" #form="ngForm">
+                <input type="hidden" formControlName="_id">
+          
+                <mat-form-field>
+                  <input matInput placeholder="Dentista" formControlName="userDentist">
+                </mat-form-field>
+          
+                <mat-form-field>
+                  <input matInput placeholder="Paciente" formControlName="patient" type="patient">
+                </mat-form-field>
+          
+                <mat-form-field>
+                  <input matInput placeholder="Descrição" formControlName="description" type="description">
+                </mat-form-field>
+          
+                <mat-form-field>
+                  <input matInput placeholder="Receita" formControlName="prescription" type="prescription">
+                </mat-form-field>
+          
+                <!-- <mat-form-field>
+                  <mat-select placeholder="Departments" formControlName="departments" multiple>
+                    <mat-select-trigger>
+                      {{productForm.value.departments ? productForm.value.departments[0]?.name : ''}}
+                      <span *ngIf="productForm.value.departments?.length > 1" class="additional-selection">
+                        (+{{productForm.value.departments.length - 1}} {{productForm.value.departments.length === 2 ? 'other' : 'others'}})
+                      </span>
+                    </mat-select-trigger>
+                    <mat-option *ngFor="let dep of departments" [value]="dep">{{dep.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field> -->
+          
+                <div fxLayout="row" fxLayoutAlign="end end">
+                  <button mat-button color="primary" fxFlex="10" type="submit">Save</button>
+                  <button mat-button color="warn" fxFlex="10" type="reset">Cancel</button>
                 </div>
-              </div>
+              </form>
+          
+          
+              <ng-container *ngIf="appointments?.length>0; else empty">
+                <mat-list>
+                  <h3 mat-subheader>Consultas</h3>
+                  <mat-list-item *ngFor="let prod of appointments">
+                    <mat-icon mat-list-icon>folder</mat-icon>
+                    <h4 mat-line>Dentistas{{prod.userDentist}}</h4>
+                    <h4 mat-line>Paciente {{prod.patient | currency:"R$ "}} - Receita: {{prod.prescription}}</h4>
+                    <mat-chip-list mat-line>
+                      <mat-chip *ngFor="let d of prod.userDentist">{{d.userDentist}}</mat-chip>
+                    </mat-chip-list>
+                    <button mat-icon-button color="accent" (click)="delete(prod)">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                    <button mat-icon-button color="primary" (click)="edit(prod)">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                  </mat-list-item>
+                </mat-list>   
+              </ng-container> 
+              <ng-template #empty>
+                <div><em>Empty</em></div>
+              </ng-template>
+          
+            </mat-card-content>
+          </mat-card>
+

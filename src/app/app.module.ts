@@ -13,6 +13,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { StorageService } from 'src/service/storage.service';
 import { ConsultaService } from 'src/service/consulta.service';
+import { MaterialModule } from 'src/material.module';
+
+
 
 
 @NgModule({
@@ -31,7 +34,8 @@ import { ConsultaService } from 'src/service/consulta.service';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    routing
+    routing,
+    MaterialModule,
   ],
   providers: [
     StorageService,

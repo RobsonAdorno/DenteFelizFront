@@ -3,7 +3,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { UtilsString } from 'src/utils/utils.string';
 import { HttpClient } from '@angular/common/http';
 import { Appointment } from 'src/model/appointment/appointment.model';
-import { tap, delay } from 'rxjs/operators';
+import { tap, filter, map } from 'rxjs/operators';
 
 @Injectable()
 export class ConsultaService{
@@ -25,26 +25,22 @@ private baseUrlAppointments: string = `${UtilsString.baseUrlApi}/appointments`;
     // }
 
     get(): Observable<Appointment[]> {
-        if (!this.loaded) {
+      if (!this.loaded) {
           this.http.get<Appointment[]>(this.baseUrlAppointments)
-            .pipe( 
-              tap((deps) => console.log(deps)),
-              delay(1000)
-            )
-            .subscribe(this.appointmentSubject$);
-          this.loaded = true;
-        }
-        return this.appointmentSubject$.asObservable();
+        .subscribe(this.appointmentSubject$);
+        this.loaded = true;
       }
+      return this.appointmentSubject$.asObservable();
+    }
 
       del(dep: Appointment): Observable<any> {
         return this.http.delete(`${this.baseUrlAppointments}/${dep._id}`)
           .pipe( 
             tap(()=> {
-              let departments = this.appointmentSubject$.getValue();
-              let i = departments.findIndex(d => d._id === dep._id);
+              let ap = this.appointmentSubject$.getValue();
+              let i = ap.findIndex(d => d._id === dep._id);
               if (i>=0)
-                departments.splice(i,1);
+                ap.splice(i,1);
             }
           ))
       }
