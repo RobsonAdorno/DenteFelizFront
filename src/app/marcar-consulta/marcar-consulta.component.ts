@@ -2,6 +2,8 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { StorageService } from 'src/service/storage.service';
 import { ConsultaService } from 'src/service/consulta.service';
 import { Appointment } from 'src/model/appointment/appointment.model';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-marcar-consulta',
@@ -12,7 +14,11 @@ import { Appointment } from 'src/model/appointment/appointment.model';
 export class MarcarConsultaComponent implements OnInit {
 login: string;
 appointment: Appointment;
-isAppointmentNull: boolean = false;
+appointments: Appointment[];
+AppointmentNull: boolean = false;
+apoName: string = '';
+private unsubscribe$: Subject<any> = new Subject();
+
 
   constructor(private storage: StorageService, private consulta: ConsultaService) { }
 
@@ -26,15 +32,39 @@ isAppointmentNull: boolean = false;
   }
 
   showAllAppointmentsWithoutParameters(){
-    this.consulta.findAllAppontments().subscribe(
-      (sucess) => {
-        if (!sucess){
-          this.isAppointmentNull = true;
-        }
-    },
-      (error) => {
-        console.log(error);
-    });
+    this.consulta.get() 
+    .pipe( takeUntil(this.unsubscribe$))
+    .subscribe((apos) => this.appointments = apos);
+  }
+    
+  
+
+  save(){
+    if ( this.appointment) {
+      this.consulta.update(
+        {userDentist: this.apoName, _id: this.appointment._id})
+        .subscribe(
+          (sucess) => {
+            console.log("Deu boa!");
+          },
+          (err) => {
+            console.error(err);
+          }
+        )
+    }
+    else {
+      this.consulta.addAppontments({userDentist: this.apoName})
+      .subscribe(
+        (dep) => {
+          console.log(dep);
+        },
+        (err) => console.error(err))
+    }
+    this.clearFields();
+  }
+
+  clearFields(){
+
   }
 
 }
