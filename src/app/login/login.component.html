@@ -16,11 +16,11 @@
   	    <!-- Login Form -->
   	    <form (submit)="onSubmit()" [formGroup]="loginForm">
             <input type="text" class="form-control" 
-			placeholder="Usuário" (focus)="focus=true" (blur)="focus=false" formControlName="login">
+			placeholder="Usuário" formControlName="login">
 			<!-- <p *ngIf="loginForm.controls.login && loginForm.controls.login.errors" margin-left>Valor inválido</p> -->
 
              <input type="password" class="form-control"
-            placeholder="Senha" (focus)="focus=true" (blur)="focus=false" formControlName="password">
+            placeholder="Senha" formControlName="password">
 
             <!-- <input type="submit" class="fadeIn fourth zero-raduis" value="login"> -->
             <div class="footer text-center">
