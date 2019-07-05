@@ -5,6 +5,7 @@ import { MarcarConsultaComponent } from './marcar-consulta/marcar-consulta.compo
 import { LoginComponent } from './login/login.component';
 
 const APP_ROUTES: Routes=[
+    { path: '', component: LoginComponent },
     { path: 'login', component: LoginComponent },
     { path: 'cadastro-usuario', component: CadastroUsuarioComponent },
     { path: 'marcar-consulta', component: MarcarConsultaComponent } 

@@ -9,10 +9,6 @@ import { Appointment } from 'src/model/appointment/appointment.model';
   styleUrls: ['./marcar-consulta.component.css']
 })
 
-@Injectable(
-  {providedIn: 'root'}
-)
-
 export class MarcarConsultaComponent implements OnInit {
 login: string;
 appointment: Appointment;

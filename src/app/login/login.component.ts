@@ -2,7 +2,6 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/services/auth.service';
-import { routing } from '../app.routing';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({

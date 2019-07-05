@@ -1,11 +1,20 @@
 <div class="topnav">
-    <a routerLink="" class="active">Home</a>
-    <a >Sobre</a>
-    <a >Contato</a>
+    
     <!-- <a routerLink="marcar-consulta" >Marcar Consulta</a> -->
-    <div class="login-container">
-        <a routerLink="cadastro-usuario">Cadastrar-se</a>
+    <ng-container *ngIf="!( isLog$ | async)">
+        <a routerLink="" class="active">Home</a>
+        <a >Sobre</a>
+        <a >Contato</a>
+        <a routerLink="cadastro-usuario">Cadastre-se</a>
         <a routerLink="login">Login</a>
-        <a *ngIf="(isLog | async)">LOGADO</a>
-    </div>
+    </ng-container>
+
+    <ng-container *ngIf="( isLog$ | async)">
+        <a routerLink="marcar-consulta" class="active">Home</a>
+        <a routerLink = "marcar-consulta">Cadastrar consulta</a>
+        <button (click) = "logout()">Sair</button>
+    </ng-container>
+
   </div>
+
+  

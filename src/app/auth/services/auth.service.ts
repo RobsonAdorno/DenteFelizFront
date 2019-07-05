@@ -45,6 +45,7 @@ export class AuthService {
       login: this.jwtHelper.decodeToken(tok).sub
     }
     this.storage.setLocalUser(user);
+    this.subLoggedIn$.next(true);
   }
 
   logout() {
@@ -54,7 +55,7 @@ export class AuthService {
   }
 
   isAuthenticated(): Observable<boolean> {
-    var token = localStorage.getItem('Authorization');
+    var token = localStorage.getItem('token');
 
     if (token && !this.subLoggedIn$.value) {
       return this.checkTokenValidation();

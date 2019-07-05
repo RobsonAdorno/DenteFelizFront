@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { LoginComponent } from '../login/login.component';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { AuthService } from '../auth/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,14 +9,17 @@ import { Observable, BehaviorSubject } from 'rxjs';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  isLog:Observable<boolean>;
+  isLog$:Observable<boolean>;
   
-  constructor(private login: LoginComponent) { 
-      this.isLog = this.login.subLoggedIn;
-    }
+  constructor(private login: AuthService, private router: Router) {}
 
   ngOnInit() {
-    
+    this.isLog$ = this.login.isAuthenticated();
+  }
+
+  logout(){
+    this.login.logout();
+    this.router.navigateByUrl("login");
   }
 
 }
