@@ -1,19 +1,79 @@
-<form>
-    <div class="container">
-    <div class="form-group">
-        <label for="Nome">Nome</label>
-        <input type="text" class="form-control" id="Nome" placeholder="Digite o seu nome completo">
-    </div>    
-    <div class="form-group">
-        <label for="exampleInputEmail1">Endereço de email</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Seu email">
-        <small id="emailHelp" class="form-text text-muted">Seu e-mail será o seu login no sistema</small>
-    </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Senha</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha">
-    </div>
-    
-    <button type="submit" class="btn btn-primary">Enviar</button>
-    </div>
-</form>
+<div  fxLayout="row" fxLayoutAlign="space-around center" >
+        <div align="center" fxLayout="row" fxLayoutAlign="center center"  class="register-form">
+      
+          <form role="form" [formGroup]="formRegister" (ngSubmit)="onSubmit()">
+      
+            <mat-card class="mat-elevation-z8" flex="80">
+      
+              <mat-card-title>Cadastrar-se</mat-card-title>
+      
+              <mat-card-content fxLayout="column" fxLayoutAlign="space-around stretch">
+      
+                <div fxLayout="row" fxLayoutAlign="space-between stretch">
+                  <mat-form-field fxFlex="45">
+                    <input matInput type="text" formControlName="name"
+                           autocomplete="name" placeholder="Nome">
+                  </mat-form-field>
+      
+                  <mat-form-field fxFlex="45">
+                    <input matInput type="text" formControlName="login"
+                           autocomplete="login" placeholder="Usuário">
+                  </mat-form-field>
+                </div>
+      
+                <div fxLayout="row" fxLayoutAlign="space-between stretch">
+                  <mat-form-field fxFlex="45">
+                    <input matInput type="text" formControlName="cpf"
+                           autocomplete="cpf" placeholder="CPF" >
+                  </mat-form-field>
+      
+                  <mat-form-field fxFlex="45">
+                    <input matInput type="text" formControlName="cro"
+                           autocomplete="cro" placeholder="CRO" >
+                  </mat-form-field>
+                </div>
+      
+                <div fxLayout="row" fxLayoutAlign="space-between stretch">
+                  <mat-form-field fxFlex="100">
+                    <input matInput type="email" formControlName="email"
+                           class="form-control" value="" autocomplete="email" placeholder="E-mail" >
+                  </mat-form-field>
+                </div>
+      
+                <div fxLayout="row" fxLayoutAlign="space-between stretch">
+      
+                  <mat-form-field  fxFlex="45">
+                    <input matInput type="password" formControlName="password1"
+                           type="password" autocomplete="off">
+                    <mat-placeholder>
+                      <mat-icon>lock</mat-icon> Nova senha
+                    </mat-placeholder>
+                  </mat-form-field>
+      
+                  <mat-form-field fxFlex="45">
+                    <input matInput type="password" formControlName="password2"
+                           class="form-control"  autocomplete="off">
+                    <mat-placeholder>
+                      <mat-icon>lock_outline</mat-icon> Confirmação de senha
+                    </mat-placeholder>
+                  </mat-form-field>
+      
+                </div>
+      
+      
+                <div fxLayout="row" fxLayoutAlign="end end" >
+                  <button mat-button color="primary" type="submit" [disabled]="!formRegister.valid">
+                    <mat-icon>done</mat-icon>&nbsp;Cadastrar
+                  </button>
+                </div>
+      
+              </mat-card-content>
+            </mat-card>
+          </form>
+      
+      
+        </div>
+      </div>
+      
+      
+      

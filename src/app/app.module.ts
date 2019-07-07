@@ -15,9 +15,6 @@ import { StorageService } from 'src/service/storage.service';
 import { ConsultaService } from 'src/service/consulta.service';
 import { MaterialModule } from 'src/material.module';
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
