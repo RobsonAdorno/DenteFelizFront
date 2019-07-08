@@ -37,7 +37,7 @@
                 <input type="hidden" formControlName="_id">
           
                 <mat-form-field>
-                  <input matInput placeholder="Dentista" formControlName="userDentist">
+                  <input matInput placeholder="Dentista" formControlName="user">
                 </mat-form-field>
           
                 <mat-form-field>
@@ -76,10 +76,11 @@
                   <h3 mat-subheader>Consultas</h3>
                   <mat-list-item *ngFor="let prod of appointments">
                     <mat-icon mat-list-icon>folder</mat-icon>
-                    <h4 mat-line>Dentistas{{prod.userDentist}}</h4>
-                    <h4 mat-line>Paciente {{prod.patient | currency:"R$ "}} - Receita: {{prod.prescription}}</h4>
+                    <h4 mat-line>Dentista: {{prod.user}}</h4>
+                    <h4 mat-line>Paciente: {{prod.patient}} </h4>
+                    <h4 mat-line>Receita: {{prod.prescription}}</h4>
                     <mat-chip-list mat-line>
-                      <mat-chip *ngFor="let d of prod.userDentist">{{d.userDentist}}</mat-chip>
+                      <mat-chip *ngFor="let d of prod.user">{{d.userDentist}}</mat-chip>
                     </mat-chip-list>
                     <button mat-icon-button color="accent" (click)="delete(prod)">
                       <mat-icon>delete</mat-icon>

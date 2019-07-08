@@ -58,7 +58,7 @@ private baseUrlAppointments: string = `${UtilsString.baseUrlApi}/appointments`;
               let departments = this.appointmentSubject$.getValue();
               let i = departments.findIndex(d => d._id === dep._id);
               if (i>=0)
-                departments[i].userDentist = d.userDentist;
+                departments[i].user = d.user;
             })
           )
       }

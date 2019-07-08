@@ -29,17 +29,18 @@ private unsubscribe$: Subject<any> = new Subject();
   ngOnInit() {
     this.createForm();
     let localUser = this.storage.getLocalUser();
+    this.showAllAppointmentsWithoutParameters();
 
     if (localUser && localUser.login){
       this.login = localUser.login;
-      this.showAllAppointmentsWithoutParameters();
+      
     }
   }
 
   createForm() {
     this.appointmentForm = this.fb.group({
       _id:[null],
-      userDentist: ['', [Validators.required]],
+      user: ['', [Validators.required]],
       patient: ['', [Validators.required]],
       description: ['', [Validators.required]],
       prescription: ['', [Validators.required]],
@@ -53,25 +54,28 @@ private unsubscribe$: Subject<any> = new Subject();
   }
 
   save(){
-    if ( this.appointment) {
-      this.consulta.update(
-        {userDentist: this.apoName, _id: this.appointment._id})
+    if (this.appointment) {
+      this.consulta.update(this.appointmentForm.value)
         .subscribe(
           (sucess) => {
-            console.log("Deu boa!");
+            this.snackBar.open('Essa consulta já existe, atualizado com sucesso.', 'Ok', {duration: 4000});
+            console.log(sucess);
           },
           (err) => {
+            this.snackBar.open('Erro ao cadastrar a consulta.', 'Ok', {duration: 4000});
             console.error(err);
           }
         )
     }
     else {
-      this.consulta.addAppontments({userDentist: this.apoName})
+      this.consulta.addAppontments(this.appointmentForm.value)
       .subscribe(
-        (dep) => {
-          console.log(dep);
+        (sucess) => {
+          console.log(sucess);
+          this.snackBar.open('Essa consulta cadastrada com sucesso.', 'Ok', {duration: 4000});
         },
         (err) => console.error(err))
+        this.snackBar.open('Erro ao cadastrar a consulta.', 'Ok', {duration: 4000});
     }
     this.clearFields();
   }
@@ -89,7 +93,7 @@ private unsubscribe$: Subject<any> = new Subject();
   }
 
   edit(dep: Appointment) {
-    this.apoName = dep.userDentist;
+    this.apoName = dep.user;
     this.appointment = dep;
   }
 
