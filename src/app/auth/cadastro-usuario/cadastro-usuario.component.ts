@@ -3,7 +3,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { Person } from 'src/model/model.person';
-import { AuthService } from '../auth/services/auth.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-cadastro-usuario',
@@ -61,7 +61,7 @@ export class CadastroUsuarioComponent implements OnInit {
 
         (err) => {
           console.error(err);
-          this.snackBar.open(err.error.message, 'OK', {duration: 2000});
+          this.snackBar.open('Erro ao realizar o cadastro', 'OK', {duration: 2000});
         });
   }
 

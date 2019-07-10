@@ -3,7 +3,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { UtilsString } from 'src/utils/utils.string';
 import { HttpClient } from '@angular/common/http';
 import { Appointment } from 'src/model/appointment/appointment.model';
-import { tap, filter, map } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class ConsultaService{
