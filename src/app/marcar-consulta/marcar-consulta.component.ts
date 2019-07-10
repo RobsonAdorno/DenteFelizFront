@@ -13,7 +13,7 @@ import { FormGroup, Validators, NgForm, FormBuilder } from '@angular/forms';
   styleUrls: ['./marcar-consulta.component.css']
 })
 
-// @ViewChild('form') form: NgForm;
+//  @ViewChild('form') form: NgForm;
 
 export class MarcarConsultaComponent implements OnInit {
 login: string;
@@ -62,15 +62,16 @@ private unsubscribe$: Subject<any> = new Subject();
   }
 
   save(){
-    if (this.appointment) {
-      this.consulta.update(this.appointmentForm.value)
+    let valueForm = this.appointmentForm.value;
+    if (valueForm.id != null) {
+      this.consulta.update(valueForm)
         .subscribe(
           (sucess) => {
             this.snackBar.open('Essa consulta já existe, atualizado com sucesso.', 'Ok', {duration: 4000});
             console.log(sucess);
           },
           (err) => {
-            this.snackBar.open('Erro ao cadastrar a consulta.', 'Ok', {duration: 4000});
+            this.snackBar.open('Erro ao realizar o update.', 'Ok', {duration: 4000});
             console.error(err);
           }
         )
@@ -89,6 +90,7 @@ private unsubscribe$: Subject<any> = new Subject();
   }
 
   clearFields(){
+    // this.form.resetForm();
   }
 
   delete(dep: Appointment) {
@@ -106,9 +108,8 @@ private unsubscribe$: Subject<any> = new Subject();
       )
   }
 
-  edit(dep: Appointment) {
-    this.apoName = dep.user;
-    this.appointment = dep;
+  edit(apo: Appointment) {
+      this.appointmentForm.setValue(apo);
   }
 
   notify(msg: string) {
