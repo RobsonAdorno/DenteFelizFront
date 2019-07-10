@@ -32,9 +32,9 @@
             </mat-card-title>
           
             <mat-card-content>
-              <form [formGroup]="appointmentForm" (ngSubmit)="save()" 
+              <form [formGroup]="appointmentForm" (ngSubmit)="save(); appointmentForm.reset()" 
                   fxLayout="column" fxLayoutAlign="space-between" #form="ngForm">
-                <input type="hidden" formControlName="_id">
+                <input type="hidden" formControlName="id">
           
                 <mat-form-field>
                   <input matInput placeholder="Dentista" formControlName="user">
@@ -79,9 +79,9 @@
                     <h4 mat-line>Dentista: {{prod.user}}</h4>
                     <h4 mat-line>Paciente: {{prod.patient}} </h4>
                     <h4 mat-line>Receita: {{prod.prescription}}</h4>
-                    <mat-chip-list mat-line>
-                      <mat-chip *ngFor="let d of prod.user">{{d.userDentist}}</mat-chip>
-                    </mat-chip-list>
+                    <!-- <mat-chip-list mat-line>
+                      <mat-chip *ngFor="let d of prod.user">{{d.user}}</mat-chip>
+                    </mat-chip-list> -->
                     <button mat-icon-button color="accent" (click)="delete(prod)">
                       <mat-icon>delete</mat-icon>
                     </button>

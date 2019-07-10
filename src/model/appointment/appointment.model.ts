@@ -1,5 +1,5 @@
 export interface Appointment{
-    _id?: string,
+    id?: number,
     user: string,
     patient?: string, 
     description?: string,

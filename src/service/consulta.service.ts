@@ -34,11 +34,11 @@ private baseUrlAppointments: string = `${UtilsString.baseUrlApi}/appointments`;
     }
 
       del(dep: Appointment): Observable<any> {
-        return this.http.delete(`${this.baseUrlAppointments}/${dep._id}`)
+        return this.http.delete(`${this.baseUrlAppointments}/${dep.id}`)
           .pipe( 
             tap(()=> {
               let ap = this.appointmentSubject$.getValue();
-              let i = ap.findIndex(d => d._id === dep._id);
+              let i = ap.findIndex(d => d.id === dep.id);
               if (i>=0)
                 ap.splice(i,1);
             }
@@ -48,15 +48,18 @@ private baseUrlAppointments: string = `${UtilsString.baseUrlApi}/appointments`;
     addAppontments(ap: Appointment): Observable<Appointment>  {
         return this.http.post<Appointment>(this.baseUrlAppointments, ap)
         .pipe(
-          tap((dep: Appointment) => this.appointmentSubject$.getValue()))
+          tap((dep) => {
+            this.appointmentSubject$.getValue()
+            .push({...ap, id: dep.id})
+          }))
       }
 
       update(dep: Appointment): Observable<Appointment> {
-        return this.http.patch<Appointment>(`${this.baseUrlAppointments}/${dep._id}`, dep)
+        return this.http.patch<Appointment>(`${this.baseUrlAppointments}/${dep.id}`, dep)
           .pipe(
             tap((d) => {
               let departments = this.appointmentSubject$.getValue();
-              let i = departments.findIndex(d => d._id === dep._id);
+              let i = departments.findIndex(d => d.id === dep.id);
               if (i>=0)
                 departments[i].user = d.user;
             })

@@ -31,15 +31,23 @@ private unsubscribe$: Subject<any> = new Subject();
     let localUser = this.storage.getLocalUser();
     this.showAllAppointmentsWithoutParameters();
 
+    this.consulta.get()
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((apos) => this.appointments = apos);
+
     if (localUser && localUser.login){
       this.login = localUser.login;
       
     }
   }
 
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+  }
+
   createForm() {
     this.appointmentForm = this.fb.group({
-      _id:[null],
+      id:[null],
       user: ['', [Validators.required]],
       patient: ['', [Validators.required]],
       description: ['', [Validators.required]],
@@ -81,14 +89,20 @@ private unsubscribe$: Subject<any> = new Subject();
   }
 
   clearFields(){
-
   }
 
   delete(dep: Appointment) {
     this.consulta.del(dep)
       .subscribe(
-        () => this.notify('Removed!'),
-        (err) => this.notify(err.error.msg)
+        (sucess) => {
+          console.log(sucess)
+          this.snackBar.open('Sucesso ao remover a consulta.', 'Ok', {duration: 4000});
+        },
+
+        (error) => {
+          this.snackBar.open('Erro ao remover a consulta.', 'Ok', {duration: 4000});
+        }
+
       )
   }
 
