@@ -1,3 +1,33 @@
-<app-header></app-header>
+<mat-toolbar>
+    Dente Feliz
+    <span fxFlex></span>
+  
+    <ng-container *ngIf="!(authenticated$ | async) ">
+      <button mat-button routerLink="/login">
+        <mat-icon>input</mat-icon>
+        &nbsp;Entrar
+      </button>
+      <button mat-button routerLink="/cadastro-usuario">
+        <mat-icon>person_add</mat-icon>
+        &nbsp;Cadastrar-se
+      </button> 
+      
+    </ng-container>
+  
+    <ng-container *ngIf="(authenticated$ | async) && (user$ |async)">
+
+      <mat-menu #menu="matMenu">
+        <p class="username">{{(user$|async)?.email}}</p>
+        <mat-divider></mat-divider>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon>
+          Sair
+        </button>
+      </mat-menu>    
+  
+    </ng-container>
+  </mat-toolbar>
+
+
 <app-footer></app-footer>
 <router-outlet></router-outlet>
